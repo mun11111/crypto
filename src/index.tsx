@@ -16,55 +16,18 @@
 // // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 // reportWebVitals();
 
+import React from "react";
+import ReactDOM from "react-dom";
+import { ThemeProvider } from "styled-components";
+import App from "./App";
+import { theme } from "./theme";
 
 
-import styled, { keyframes } from "styled-components";
-
-const Wrapper = styled.div`
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
-`;
-
-const rotationAnimation = keyframes`
-@@ -18,6 +22,10 @@ const rotationAnimation = keyframes`
-  }
-`;
-
-const Emoji = styled.span`
-  font-size: 36px;
-`;
-
-const Box = styled.div`
-  height: 200px;
-  width: 200px;
-@@ -26,23 +34,18 @@ const Box = styled.div`
-  justify-content: center;
-  align-items: center;
-  animation: ${rotationAnimation} 1s linear infinite;
-  span {
-    font-size: 36px;
-    &:hover {
-      font-size: 48px;
-    }
-    &:active {
-      opacity: 0;
-    }
-  ${Emoji}:hover {
-    font-size: 98px;
-  }
-`;
-
-function App() {
-  return (
-    <Wrapper>
-      <Box>
-        <span>🤩</span>
-        <Emoji>🤩</Emoji>
-      </Box>
-      <Emoji>🔥</Emoji>
-    </Wrapper>
-  );
-}
+ReactDOM.render(
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
