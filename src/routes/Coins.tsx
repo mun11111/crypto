@@ -72,7 +72,7 @@ function Coins() {
   const [loading, setLoading] = useState(true);
   useEffect(()=>{
     ( async () => {
-        const response = await fetch("https://api.coinpaprika.com/v1/coins");
+        const response = await fetch(`https://api.coinpaprika.com/v1/coins`);
         const json = await response.json();
         setCoins(json.slice(0,100));
         setLoading (false);
@@ -89,13 +89,18 @@ function Coins() {
       <CoinsList>
           {coins.map((coin) => (
             <Coin key={coin.id}>
-              <Link to={`/${coin.id}`}>
+              <Link to={{
+                pathname: `/${coin.id}`,
+                state: {name: coin.name},
+                
+                }}
+                >
                 <Img src={`https://cryptoicon-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
                 />
                 {coin.name} &rarr;</Link>
             </Coin>
           ))}
-     </CoinsList>
+     </CoinsList> 
       )}
     </Container>
     );
